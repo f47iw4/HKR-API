@@ -1,0 +1,220 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API de Productos",
+        "description": "API para manejar productos en el catálogo",
+        "contact": {
+            "name": "Tu Nombre",
+            "url": "http://tusitio.com",
+            "email": "tu_email@dominio.com"
+        },
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/productos": {
+            "get": {
+                "summary": "Listar todos los productos",
+                "operationId": "746ba2a7d9bb59a32a576fde4622e2e0",
+                "responses": {
+                    "200": {
+                        "description": "Lista de productos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Producto"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Añadir un nuevo producto",
+                "operationId": "ac37f4fe9d551405bf179f4420ed3943",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Producto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Producto creado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Producto"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error en la validación"
+                    }
+                }
+            }
+        },
+        "/api/productos/{id}": {
+            "get": {
+                "summary": "Mostrar un producto específico",
+                "operationId": "d0d159096e1f824f9564fcfca19c9c51",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Producto encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Producto"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Producto no encontrado"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Actualizar un producto existente",
+                "operationId": "e613ca2ce2a551442e00ca0bee2403e5",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Producto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Producto actualizado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Producto"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error en la validación"
+                    },
+                    "404": {
+                        "description": "Producto no encontrado"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Eliminar un producto",
+                "operationId": "caae640dfa70ced4a104fe90428b765c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Producto eliminado"
+                    },
+                    "404": {
+                        "description": "Producto no encontrado"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Producto": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "nombre": {
+                        "type": "string",
+                        "example": "Anillo corazón"
+                    },
+                    "descripcion": {
+                        "type": "string",
+                        "example": "Anillo con corazón troquelado. Plata con baño de oro"
+                    },
+                    "precio": {
+                        "type": "number",
+                        "format": "float",
+                        "example": 249.990000000000009094947017729282379150390625
+                    },
+                    "imagen": {
+                        "type": "string",
+                        "example": "img/productos/J05917-02-1.jpg"
+                    },
+                    "categoria": {
+                        "type": "string",
+                        "example": "anillos"
+                    },
+                    "material": {
+                        "type": "string",
+                        "example": "Plata"
+                    },
+                    "piedras": {
+                        "type": "string",
+                        "example": "topacio,rodolita"
+                    },
+                    "stock": {
+                        "type": "integer",
+                        "example": 10
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2023-10-10T12:00:00.000000Z"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2023-10-10T12:00:00.000000Z"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    }
+}

@@ -39,3 +39,6 @@ Route::get('/productos/{id}', [ProductoController::class, 'show']);
 Route::get('/productos', [ProductoController::class, 'index']);
 Route::put('/productos/{id}', [ProductoController::class, 'update']);
 Route::delete('/productos/{id}', [ProductoController::class, 'destroy']);
+Route::get('api/documentation', function() {
+    return view('swagger-ui.blade.php'); 
+});
