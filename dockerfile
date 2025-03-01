@@ -15,11 +15,15 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Copiar el código fuente de la aplicación
 COPY . /var/www/html
+# Cambiar permisos a los archivos
+RUN chown -R www-data:www-data /var/www/html
+RUN chmod -R 755 /var/www/html
 
 # Configurar Apache y permisos
 WORKDIR /var/www/html
 RUN chown -R www-data:www-data /var/www/html
-
+# Reiniciar Apache
+RUN service apache2 restart
 # Instalar las dependencias de Composer
 RUN composer install --no-dev --optimize-autoloader
 RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
