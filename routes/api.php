@@ -42,3 +42,6 @@ Route::delete('/productos/{id}', [ProductoController::class, 'destroy']);
 Route::get('api/documentation', function() {
     return view('swagger-ui.blade.php'); 
 });
+Route::get('/products', 'ProductController@index');
+
+Route::middleware('api')->get('/products', [ProductController::class, 'index']);
