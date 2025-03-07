@@ -28,20 +28,25 @@ Route::get('/test', function () {
     return response()->json(['message' => 'Hello, API!']);
 });
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 // Rutas de productos
 Route::post('/productos', [ProductoController::class, 'store']);
+
 Route::apiResource('/productos', ProductoController::class);
 Route::get('/productos/{id}', [ProductoController::class, 'show']);
 Route::get('/productos', [ProductoController::class, 'index']);
 Route::put('/productos/{id}', [ProductoController::class, 'update']);
 Route::delete('/productos/{id}', [ProductoController::class, 'destroy']);
-Route::get('api/documentation', function() {
+/*Route::get('api/documentation', function() {
     return view('swagger-ui.blade.php'); 
 });
-Route::get('/products', 'ProductController@index');
+*/
 
+/*
+Route::get('/products', 'ProductController@index');
+*/
+
+/*
 Route::middleware('api')->get('/products', [ProductController::class, 'index']);
+*/

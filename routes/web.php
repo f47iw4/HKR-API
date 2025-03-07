@@ -17,3 +17,7 @@ Route::get('/api/docs', function () {
     return response()->json(Swagger::get());
 });
 
+// 
+Route::get('/', function () {
+    return view('welcome');
+});
