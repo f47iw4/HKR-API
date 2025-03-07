@@ -19,15 +19,11 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
-    public function boot()
+    public function boot(): void
     {
-        if (app()->environment('local')) {
-            Artisan::call('migrate');
-        }
+        //
     }
 }
-
-
 
 
 
